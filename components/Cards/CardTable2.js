@@ -8,25 +8,10 @@ import { createPopper } from "@popperjs/core";
 // import TableDropdown from "components/_Dropdowns/TableDropdown.js";
 // import { data } from "autoprefixer";
 
-const data = {
-  data: [
-    {
-      stuid: "1105",
-      stuname: "김강현",
-      stuurl: "https://marred-algebra-69b.notion.site/d5f8561a0536455d804d025786b8775c",
-    },
-    {
-      stuid: "1113",
-      stuname: "윤서준",
-      stuurl: "https://marred-algebra-69b.notion.site/d5f8561a0536455d804d025786b8775c",
-    },
-  ]
-}
-
 export default function CardTable2({ color }) {
   const userid = "1113";
   const username = "윤서준";
-  const userurl = "https://marred-algebra-69b.notion.site/d5f8561a0536455d804d025786b8775c";
+  const userurl = "http://me.xn--ccka9s.xn--q9jyb4c/";
   // const { data, error } = useSWR('강현이가 애들 리스트 불러오는 api만들꺼임 ㅇㅇ');
   // if (!data) return <div>로딩 페이지 너가 만들어</div>
   // if (error) return <div>오류 페이지 너가 만들어</div>
@@ -44,7 +29,7 @@ export default function CardTable2({ color }) {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
-  const [chgbtn, setchgbtn] = React.useState(1);
+  const [chgbtn, setchgbtn] = React.useState(0);
   return (
     <>
       <div
