@@ -13,12 +13,12 @@ const data = {
     {
       stuid: "1105",
       stuname: "김강현",
-      stuurl: "https://marred-algebra-69b.notion.site/d5f8561a0536455d804d025786b8775c",
+      stuurl: "https://portfolio-f2bd1a.webflow.io/",
     },
     {
       stuid: "1113",
       stuname: "윤서준",
-      stuurl: "https://marred-algebra-69b.notion.site/d5f8561a0536455d804d025786b8775c",
+      stuurl: "http://me.xn--ccka9s.xn--q9jyb4c/",
     },
     {
       stuid: "1117",
