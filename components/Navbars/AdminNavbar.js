@@ -2,12 +2,17 @@ import React from "react";
 
 // import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
-export default function Navbar({  username }) {
+export default function Navbar({ username }) {
   const login = () => {
-    fetch("https://portfolio.gbsw.hs.kr/login").then((response) =>
+    fetch("https://portfolio.gbsw.hs.kr:25565/login").then((response) =>
       response.json().then(x=> window.location = x.url)
     );
-  }
+  };
+  const logout = () => {
+    fetch("https://portfolio.gbsw.hs.kr:25565/logout").then((response) =>
+      console.log("현아 사랑해♡")
+    );
+  };
   const userid="";
   return (
     <>
@@ -38,7 +43,7 @@ export default function Navbar({  username }) {
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex text-white text-sm">
             {/* <UserDropdown /> */}
-            <div onClick={(e) => login()}>
+            <div onClick={(e) => {userid ? logout() : login();}}>
               { userid ? userid + " " + username : "로그인"}
             </div>
             
