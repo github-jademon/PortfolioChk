@@ -3,7 +3,7 @@ import React from "react";
 
 // components
 
-import CardStats from "components/Cards/CardStats.js";
+import Stats from "components/Table/Stats.js";
 
 const data = {
   data: [
@@ -50,7 +50,7 @@ export default function HeaderStats() {
               {
                 data.data.map((v, i) => (
                   <div className="w-full lg:w-6/12 xl:w-3/12 px-4" key={i}>
-                    <CardStats
+                    <Stats
                       statClasstype={v.classtype}
                       statGrade={v.grade}
                       statClass={v.class}
