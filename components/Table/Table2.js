@@ -35,8 +35,16 @@ export default function Table2({ color }) {
   };
 
   const setChgFile = () => {
-    setchgbtn(0);
-    userurl = document.querySelector('[type=file]').value;
+    const userfile = document.querySelector('[type=file]').value;
+    console.log(userfile);
+    if(userfile !== "") {
+      userurl = userfile;
+      document.querySelector('#urlchg').value = "";
+    }
+    
+  };
+
+  const sendUrl = () => {
     console.log(userurl);
   };
 
@@ -97,7 +105,7 @@ export default function Table2({ color }) {
                     <button
                       className="text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"
-                      onClick={() => {setShowModal(false); setChgFile();}}
+                      onClick={() => {setShowModal(false); setChgFile(); setchgbtn(0);}}
                     >
                       확인
                     </button>
@@ -159,11 +167,11 @@ export default function Table2({ color }) {
                 </th>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 w-4/6">
                   <div className="hover:text-indigo-500">
-                    <a href={ userurl } className={"w-full p-2 " + (chgbtn === 1 ? "hidden" : "")} target="_blank" rel="noreferrer">
+                    <a href={ userurl } className={"w-full p-2 " + (chgbtn !== 1 ? "" : "hidden")} target="_blank" rel="noreferrer">
                       { userurl }
                     </a>
                   </div>
-                  <input id="urlchg" className={"text-left w-full focus:outline-none focus:border-indigo-500 border-b border-gray-400 h-full p-2 " + (chgbtn === 0 ? "hidden" : "")} defaultValue={ userurl } spellCheck={false} placeholder="주소를 입력해주세요" />
+                  <input id="urlchg" className={"text-left w-full focus:outline-none focus:border-indigo-500 border-b border-gray-400 h-full p-2 " + (chgbtn === 1 ? "" : "hidden")} defaultValue={ userurl } spellCheck={false} placeholder="주소를 입력해주세요" />
                 
                 </td>
                 <td className={"border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right "}>
@@ -176,7 +184,9 @@ export default function Table2({ color }) {
                       onClick={(e) => {
                         e.preventDefault();
                         dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
-                        chgbtn ? setChgUrl() : console.log(userurl);
+                        chgbtn === 1 ? setChgUrl() : console.log(userurl);
+                        chgbtn !== 0 ? sendUrl() : console.log(chgbtn===1 ? "URL" : "FILE");
+                        console.log(chgbtn);
                       }}
                     >
                       변경
@@ -186,7 +196,7 @@ export default function Table2({ color }) {
                       className={
                         (dropdownPopoverShow ? "block " : "hidden ") +
                         "bg-white text-base z-50 float-left list-none text-left rounded shadow-lg min-w-42 " 
-                        + (chgbtn === 1 ? "hidden" : "")
+                        + (chgbtn !== 0 ? "hidden" : "")
                       }
                     >
                       <a
@@ -203,7 +213,7 @@ export default function Table2({ color }) {
                         className={
                           "text-sm py-2 px-6 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 border-t"
                         }
-                        onClick={(e) => {e.preventDefault(); setShowModal(true); setchgbtn(1)}}
+                        onClick={(e) => {e.preventDefault(); setchgbtn(2); setShowModal(true); }}
                       >
                         file
                       </a>
