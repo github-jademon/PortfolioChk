@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";
-
+import {useState} from "react"
 import PageChange from "../components/PageChange/PageChange.js";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -30,11 +30,11 @@ Router.events.on("routeChangeError", () => {
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};
-
+    
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
-
+    
     return { pageProps };
   }
   render() {
