@@ -25,7 +25,7 @@ export default function Table(props) {
   // const { data, error } = useSWR('강현이가 애들 리스트 불러오는 api만들꺼임 ㅇㅇ');
   // if (!data) return <div>로딩 페이지 너가 만들어</div>
   // if (error) return <div>오류 페이지 너가 만들어</div>
-  console.log(props)
+
   return (
     <>
       <div
@@ -43,7 +43,7 @@ export default function Table(props) {
                   (props.color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                {props.classid + "반"}
+                {props.gradeid + "학년 " + props.classid + "반"}
               </h3>
             </div>
           </div>
@@ -108,7 +108,6 @@ export default function Table(props) {
                 </td>
               </tr>
             ))}
-              
             </tbody>
           </table>
         </div>
