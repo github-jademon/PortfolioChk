@@ -43,7 +43,7 @@ export default function Table(props) {
                   (props.color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                {props.classname + "반"}
+                {props.classid + "반"}
               </h3>
             </div>
           </div>
@@ -98,10 +98,13 @@ export default function Table(props) {
                     { v.stuid + " " + v.stuname }
                   </span>
                 </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 w-5/7">
-                  <a href={ v.stuurl } className={"w-full p-2 "} target="_blank" rel="noreferrer">
-                    { v.stuurl }
-                  </a>
+                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 w-5/7 ">
+                  <div className="hover:text-indigo-500">
+                    <a href={ v.stuurl } className={"w-full p-2 "} target="_blank" rel="noreferrer">
+                      { v.stuurl }
+                    </a>
+                  </div>
+                  
                 </td>
               </tr>
             ))}
