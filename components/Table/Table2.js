@@ -3,31 +3,47 @@ import React from "react";
 import PropTypes from "prop-types";
 import { createPopper } from "@popperjs/core";
 
+const userid = "1113";
+const username = "윤서준";
+let userurl = "http://me.xn--ccka9s.xn--q9jyb4c/";
+
 export default function Table2({ color }) {
-  const userid = "1113";
-  const username = "윤서준";
-  const userurl = "http://me.xn--ccka9s.xn--q9jyb4c/";
+  
   // const { data, error } = useSWR('강현이가 애들 리스트 불러오는 api만들꺼임 ㅇㅇ');
   // if (!data) return <div>로딩 페이지 너가 만들어</div>
   // if (error) return <div>오류 페이지 너가 만들어</div>
 
-  // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
+
   const btnDropdownRef = React.createRef();
+
   const popoverDropdownRef = React.createRef();
+
   const openDropdownPopover = () => {
-    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "left-start",
-    });
+    createPopper(btnDropdownRef.current, popoverDropdownRef.current, { placement: "left-start", });
     setDropdownPopoverShow(true);
   };
+
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+
+  const setChgUrl = () => {
+    setchgbtn(0);
+    userurl = document.querySelector('#urlchg').value;
+    console.log(userurl);
+  };
+
+  const setChgFile = () => {
+    setchgbtn(0);
+    userurl = document.querySelector('[type=file]').value;
+    console.log(userurl);
+  };
+
   const [chgbtn, setchgbtn] = React.useState(0);
 
   const [showModal, setShowModal] = React.useState(false);
-
+  
   return (
     <>
       <div
@@ -81,7 +97,7 @@ export default function Table2({ color }) {
                     <button
                       className="text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"
-                      onClick={() => setShowModal(false)}
+                      onClick={() => {setShowModal(false); setChgFile();}}
                     >
                       확인
                     </button>
@@ -147,7 +163,7 @@ export default function Table2({ color }) {
                       { userurl }
                     </a>
                   </div>
-                  <input className={"text-left w-full focus:outline-none focus:border-indigo-500 border-b border-gray-400 h-full p-2 " + (chgbtn === 0 ? "hidden" : "")} defaultValue={ userurl } spellCheck={false} placeholder="주소를 입력해주세요" />
+                  <input id="urlchg" className={"text-left w-full focus:outline-none focus:border-indigo-500 border-b border-gray-400 h-full p-2 " + (chgbtn === 0 ? "hidden" : "")} defaultValue={ userurl } spellCheck={false} placeholder="주소를 입력해주세요" />
                 
                 </td>
                 <td className={"border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right "}>
@@ -160,21 +176,17 @@ export default function Table2({ color }) {
                       onClick={(e) => {
                         e.preventDefault();
                         dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
-                        chgbtn ? setchgbtn(0) : console.log("hello");
-                        console.log(chgbtn);
-                        // !chgbtn ? //변경 값 서버로 전송 
-                        // null : null;
+                        chgbtn ? setChgUrl() : console.log(userurl);
                       }}
                     >
                       변경
-                      {/* <i className="fas fa-ellipsis-v"></i> */}
                     </a>
                     <div
                       ref={popoverDropdownRef}
                       className={
                         (dropdownPopoverShow ? "block " : "hidden ") +
                         "bg-white text-base z-50 float-left list-none text-left rounded shadow-lg min-w-42 " 
-                        + (chgbtn !== 0 ? "hidden" : "")
+                        + (chgbtn === 1 ? "hidden" : "")
                       }
                     >
                       <a
@@ -182,7 +194,7 @@ export default function Table2({ color }) {
                         className={
                           "text-sm py-2 px-6 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
                         }
-                        onClick={(e) => {e.preventDefault(); console.log(chgbtn); setchgbtn(chgbtn?0:1)}}
+                        onClick={(e) => {e.preventDefault(); setchgbtn(1)}}
                       >
                         url
                       </a>
@@ -191,7 +203,7 @@ export default function Table2({ color }) {
                         className={
                           "text-sm py-2 px-6 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 border-t"
                         }
-                        onClick={(e) => {e.preventDefault(); console.log(chgbtn); setShowModal(true)}}
+                        onClick={(e) => {e.preventDefault(); setShowModal(true); setchgbtn(1)}}
                       >
                         file
                       </a>
