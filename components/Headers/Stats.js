@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 import React from "react";
 
-import Stats from "components/Table/Stats.js";
+import Stats from "components/Headers/Stat.js";
 
 // const data= [
 //   {class: "1", classtype: "소프트1", stuno:"20"},

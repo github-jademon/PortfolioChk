@@ -1,9 +1,9 @@
 import React from "react";
 import { useRouter } from 'next/router'
 
-import AdminNavbar from "components/Navbars/Navbar.js";
+import AdminNavbar from "components/Headers/Navbars/Navbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
-import HeaderStats from "components/Headers/HeaderStats.js";
+import HeaderStats from "components/Headers/Stats.js";
 import Table from "pages/[gradeid]/[classid].js";
 import Table2 from "components/Table/Table2.js";
 
