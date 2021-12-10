@@ -3,44 +3,46 @@ import ReactDOM from "react-dom";
 import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";
-import {useState} from "react"
-import PageChange from "../components/PageChange/PageChange.js";
+import { Route } from "react-router-dom";
+// import {useState} from "react"
+// import PageChange from "../components/PageChange/PageChange.js";
+import Index from "./index.js"
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../styles/tailwind.css";
 // import 'bootstrap/dist/css/bootstrap.css';
 
-Router.events.on("routeChangeStart", (url) => {
-  console.log(`Loading: ${url}`);
-  document.body.classList.add("body-page-transition");
-  ReactDOM.render(
-    <PageChange path={url} />,
-    document.getElementById("page-transition")
-  );
-});
-Router.events.on("routeChangeComplete", () => {
-  ReactDOM.unmountComponentAtNode(document.getElementById("page-transition"));
-  document.body.classList.remove("body-page-transition");
-});
-Router.events.on("routeChangeError", () => {
-  ReactDOM.unmountComponentAtNode(document.getElementById("page-transition"));
-  document.body.classList.remove("body-page-transition");
-});
+// Router.events.on("routeChangeStart", (url) => {
+//   console.log(`Loading: ${url}`);
+//   document.body.classList.add("body-page-transition");
+//   ReactDOM.render(
+//     <PageChange path={url} />,
+//     document.getElementById("page-transition")
+//   );
+// });
+// Router.events.on("routeChangeComplete", () => {
+//   ReactDOM.unmountComponentAtNode(document.getElementById("page-transition"));
+//   document.body.classList.remove("body-page-transition");
+// });
+// Router.events.on("routeChangeError", () => {
+//   ReactDOM.unmountComponentAtNode(document.getElementById("page-transition"));
+//   document.body.classList.remove("body-page-transition");
+// });
 
 export default class MyApp extends App {
-  static async getInitialProps({ Component, router, ctx }) {
-    let pageProps = {};
+  // static async getInitialProps({ Component, router, ctx }) {
+  //   let pageProps = {};
     
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
+  //   if (Component.getInitialProps) {
+  //     pageProps = await Component.getInitialProps(ctx);
+  //   }
     
-    return { pageProps };
-  }
+  //   return { pageProps };
+  // }
   render() {
-    const { Component, pageProps } = this.props;
+    // const { Component, pageProps } = this.props;
 
-    const Layout = Component.layout || (({ children }) => <>{children}</>);
+    // const Layout = Component.layout || (({ children }) => <>{children}</>);
 
     return (
       <React.Fragment>
@@ -51,9 +53,11 @@ export default class MyApp extends App {
           />
           <title>포트폴리오</title>
         </Head>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Index />
+        {/* <Route path="/:classid" component={Index} /> */}
+        {/* <Layout>
+          <Component />
+        </Layout> */}
       </React.Fragment>
     );
   }

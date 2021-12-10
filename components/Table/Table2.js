@@ -142,9 +142,11 @@ export default function Table2({ color }) {
                   </span>
                 </th>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 w-4/6">
-                  <a href={ userurl } className={"w-full p-2 " + (chgbtn === 1 ? "hidden" : "")} target="_blank" rel="noreferrer">
-                    { userurl }
-                  </a>
+                  <div className="hover:text-indigo-500">
+                    <a href={ userurl } className={"w-full p-2 " + (chgbtn === 1 ? "hidden" : "")} target="_blank" rel="noreferrer">
+                      { userurl }
+                    </a>
+                  </div>
                   <input className={"text-left w-full focus:outline-none focus:border-indigo-500 border-b border-gray-400 h-full p-2 " + (chgbtn === 0 ? "hidden" : "")} defaultValue={ userurl } spellCheck={false} placeholder="주소를 입력해주세요" />
                 
                 </td>

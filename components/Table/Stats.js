@@ -22,7 +22,7 @@ export default function Stats({
               </span>
             </div>
             <div className="relative rounded-full w-auto ml-4 flex-initial text-indigo-500 hover:bg-indigo-500 hover:text-white">
-              <Link href="/">
+              <Link href={"/" + statGrade + "/" + statClass}>
                 <div
                   className={
                     "p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full focus:outline-none "
