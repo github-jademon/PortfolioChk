@@ -6,12 +6,15 @@ export default function Navbar({ username }) {
       response.json().then(x=> window.location = x.url)
     );
   };
+  
   const logout = () => {
     fetch("https://portfolio.gbsw.hs.kr:25565/logout").then((response) =>
       console.log("현아 사랑해♡")
     );
   };
+
   const userid="";
+
   return (
     <>
       <nav className="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
