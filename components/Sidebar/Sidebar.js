@@ -2,7 +2,39 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Sidebar() {
+// const data = {
+//   data: [
+//     {
+//       grade: "1",
+//       data: [
+//         {class: "1", classtype: "소프트1", stuno:"20"},
+//         {class: "2", classtype: "소프트2", stuno:"20"},
+//         {class: "3", classtype: "사물인터넷3", stuno:"20"},
+//         {class: "4", classtype: "게임4", stuno:"20"},
+//       ]
+//     },
+//     {
+//       grade: "2",
+//       data: [
+//         {class: "1", classtype: "소프트1", stuno:"20"},
+//         {class: "2", classtype: "소프트2", stuno:"20"},
+//         {class: "3", classtype: "사물인터넷3", stuno:"20"},
+//         {class: "4", classtype: "게임4", stuno:"20"},
+//       ]
+//     },
+//     {
+//       grade: "3",
+//       data: [
+//         {class: "1", classtype: "소프트1", stuno:"20"},
+//         {class: "2", classtype: "소프트2", stuno:"20"},
+//         {class: "3", classtype: "사물인터넷3", stuno:"20"},
+//         {class: "4", classtype: "게임4", stuno:"20"},
+//       ]
+//     },
+//   ]
+// }
+
+export default function Sidebar({ data }) {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const router = useRouter();
   return (
@@ -58,109 +90,45 @@ export default function Sidebar() {
               </div>
             </form>
 
-            <hr className="my-4 md:min-w-full" />
+            {data.data.map((vv, ii) => (
+              <>
+                <hr className="my-4 md:min-w-full" key={ii} />
 
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              1학년
-            </h6>
+                <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                  {vv.grade + "학년"}
+                </h6>
 
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-              <li className="items-center">
-                <Link href="/1/1">
-                  <a
-                    href="#pablo"
-                    className={
-                      "text-xs uppercase py-3 font-bold block " +
-                      (router.asPath === ('/1/1')
-                        ? "text-indigo-500 hover:text-indigo-700"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }
-                  >
-                    <i
-                      className={
-                        "fas fa-table mr-2 text-sm " +
-                        (router.asPath === ('/1/1')
-                          ? "opacity-75"
-                          : "text-blueGray-300")
-                      }
-                    ></i>{" "}
-                    1반
-                  </a>
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link href="/1/2">
-                  <a
-                    href="#pablo"
-                    className={
-                      "text-xs uppercase py-3 font-bold block " +
-                      (router.asPath === ('/1/2')
-                        ? "text-indigo-500 hover:text-indigo-700"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }
-                  >
-                    <i
-                      className={
-                        "fas fa-table mr-2 text-sm " +
-                        (router.asPath === ('/1/2')
-                          ? "opacity-75"
-                          : "text-blueGray-300")
-                      }
-                    ></i>{" "}
-                    2반
-                  </a>
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link href="/1/3">
-                  <a
-                    href="#pablo"
-                    className={
-                      "text-xs uppercase py-3 font-bold block " +
-                      (router.asPath === ('/1/3')
-                        ? "text-indigo-500 hover:text-indigo-700"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }
-                  >
-                    <i
-                      className={
-                        "fas fa-table mr-2 text-sm " +
-                        (router.asPath === ('/1/3')
-                          ? "opacity-75"
-                          : "text-blueGray-300")
-                      }
-                    ></i>{" "}
-                    3반
-                  </a>
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link href="/1/4">
-                  <a
-                    href="#pablo"
-                    className={
-                      "text-xs uppercase py-3 font-bold block " +
-                      (router.asPath === ('/1/4')
-                        ? "text-indigo-500 hover:text-indigo-700"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }
-                  >
-                    <i
-                      className={
-                        "fas fa-table mr-2 text-sm " +
-                        (router.asPath === ('/1/4')
-                          ? "opacity-75"
-                          : "text-blueGray-300")
-                      }
-                    ></i>{" "}
-                    4반
-                  </a>
-                </Link>
-              </li>
-            </ul>
+                <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+                  {vv.data.map((v, i) => (
+                    <li className="items-center" key={i}>
+                      <Link href={"/" + vv.grade + "/" + v.class}>
+                        <a
+                          href="#pablo"
+                          className={
+                            "text-xs uppercase py-3 font-bold block " +
+                            (router.asPath === ("/" + vv.grade + "/" + v.class)
+                              ? "text-indigo-500 hover:text-indigo-700"
+                              : "text-blueGray-700 hover:text-blueGray-500")
+                          }
+                        >
+                          <i
+                            className={
+                              "fas fa-table mr-2 text-sm " +
+                              (router.asPath === ("/" + vv.grade + "/" + v.class)
+                                ? "opacity-75"
+                                : "text-blueGray-300")
+                            }
+                          ></i>{" "}
+                          {v.class + "반"}
+                        </a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ))}
+            
+            
           </div>
         </div>
       </nav>
