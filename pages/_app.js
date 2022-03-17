@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import App from "next/app";
 import Head from "next/head";
 import Index from "./index.js"
@@ -10,7 +10,7 @@ import "../styles/tailwind.css";
 export default class MyApp extends App {
   render() {
     return (
-      <React.Fragment>
+      <>
         <Head>
           <meta
             name="viewport"
@@ -19,7 +19,7 @@ export default class MyApp extends App {
           <title>포트폴리오</title>
         </Head>
         <Index />
-      </React.Fragment>
+      </>
     );
   }
 }
