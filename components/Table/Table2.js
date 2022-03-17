@@ -13,25 +13,13 @@ export default function Table2({ color }) {
   // if (!data) return <div>로딩 페이지 너가 만들어</div>
   // if (error) return <div>오류 페이지 너가 만들어</div>
 
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-
   const btnDropdownRef = React.createRef();
 
-  const popoverDropdownRef = React.createRef();
-
-  const openDropdownPopover = () => {
-    createPopper(btnDropdownRef.current, popoverDropdownRef.current, { placement: "left-start", });
-    setDropdownPopoverShow(true);
-  };
-
-  const closeDropdownPopover = () => {
-    setDropdownPopoverShow(false);
-  };
-
   const setChgUrl = () => {
-    setchgbtn(0);
     userurl = document.querySelector('#urlchg').value;
     console.log(userurl);
+    sendUrl();
+    setUrl(false);
   };
 
   const setChgFile = () => {
@@ -41,16 +29,20 @@ export default function Table2({ color }) {
       userurl = userfile;
       document.querySelector('#urlchg').value = "";
     }
-    
   };
 
   const sendUrl = () => {
     console.log(userurl);
+    setFile(false);
   };
 
   const [chgbtn, setchgbtn] = React.useState(0);
 
   const [showModal, setShowModal] = React.useState(false);
+
+  const [url, setUrl] = React.useState(false);
+
+  const [file, setFile] = React.useState(false);
   
   return (
     <>
@@ -89,7 +81,7 @@ export default function Table2({ color }) {
                     </h3>
                     <button
                       className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                      onClick={() => setShowModal(false)}
+                      onClick={() => { setShowModal(false); setFile(false); }}
                     >
                       <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                         ×
@@ -105,7 +97,7 @@ export default function Table2({ color }) {
                     <button
                       className="text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"
-                      onClick={() => {setShowModal(false); setChgFile(); setchgbtn(0);}}
+                      onClick={() => { setShowModal(false); setChgFile(); }}
                     >
                       확인
                     </button>
@@ -167,11 +159,11 @@ export default function Table2({ color }) {
                 </th>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 w-4/6">
                   <div className="hover:text-indigo-500">
-                    <a href={ userurl } className={"w-full p-2 " + (chgbtn !== 1 ? "" : "hidden")} target="_blank" rel="noreferrer">
+                    <a href={ userurl } className={"w-full p-2 " + (url !== true ? "" : "hidden")} target="_blank" rel="noreferrer">
                       { userurl }
                     </a>
                   </div>
-                  <input id="urlchg" className={"text-left w-full focus:outline-none focus:border-indigo-500 border-b border-gray-400 h-full p-2 " + (chgbtn === 1 ? "" : "hidden")} defaultValue={ userurl } spellCheck={false} placeholder="주소를 입력해주세요" />
+                  <input id="urlchg" className={"text-left w-full focus:outline-none focus:border-indigo-500 border-b border-gray-400 h-full p-2 " + (url === true ? "" : "hidden")} defaultValue={ userurl } spellCheck={false} placeholder="주소를 입력해주세요" />
                 
                 </td>
                 <td className={"border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right "}>
@@ -183,28 +175,26 @@ export default function Table2({ color }) {
                       ref={btnDropdownRef}
                       onClick={(e) => {
                         e.preventDefault();
-                        dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
-                        chgbtn === 1 ? setChgUrl() : console.log(userurl);
-                        chgbtn !== 0 ? sendUrl() : console.log(chgbtn===1 ? "URL" : "FILE");
+                        
+                        url === true ? setChgUrl(true) : file === true ? sendUrl(true) : chgbtn === 0 ? setchgbtn(1) : console.log(userurl);
                         console.log(chgbtn);
                       }}
                     >
                       변경
                     </a>
                     <div
-                      ref={popoverDropdownRef}
                       className={
-                        (dropdownPopoverShow ? "block " : "hidden ") +
-                        "bg-white text-base z-50 float-left list-none text-left rounded shadow-lg min-w-42 " 
-                        + (chgbtn !== 0 ? "hidden" : "")
+                        "bg-white text-base z-50 float-left list-none text-left rounded shadow-lg min-w-42 absolute " 
+                        + (chgbtn !== 1 ? "hidden" : "block")
                       }
+                      style={{ top: "105px", right: "80px" }}
                     >
                       <a
                         href="#pablo"
                         className={
                           "text-sm py-2 px-6 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
                         }
-                        onClick={(e) => {e.preventDefault(); setchgbtn(1)}}
+                        onClick={(e) => {e.preventDefault(); setchgbtn(0); setUrl(true);}}
                       >
                         url
                       </a>
@@ -213,7 +203,7 @@ export default function Table2({ color }) {
                         className={
                           "text-sm py-2 px-6 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 border-t"
                         }
-                        onClick={(e) => {e.preventDefault(); setchgbtn(2); setShowModal(true); }}
+                        onClick={(e) => {e.preventDefault(); setchgbtn(0); setShowModal(true); setFile(true); }}
                       >
                         file
                       </a>
