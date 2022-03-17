@@ -18,6 +18,11 @@ const data = {
       stuname: "조수빈",
       stuurl: "https://marred-algebra-69b.notion.site/d5f8561a0536455d804d025786b8775c",
     },
+    {
+      stuid: "2211",
+      stuname: "박민혁",
+      stuurl: "https://pmh.codes",
+    },
   ]
 }
 
