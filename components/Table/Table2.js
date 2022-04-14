@@ -1,10 +1,11 @@
 // import useSWR from 'swr'
 import React from "react";
 import PropTypes from "prop-types";
+import _ from "lodash";
 
 const userid = "1113";
 const username = "윤서준";
-let userurl = "http://me.xn--ccka9s.xn--q9jyb4c/";
+let userurl = "http://hello.com";
 
 export default function Table2({ color }) {
   
@@ -25,13 +26,17 @@ export default function Table2({ color }) {
       // console.log(userurl);
       sendUrl();
       setUrl(false);
-    }
+    } 
   };
 
   const setChgFile = () => {
-    const userfile = document.querySelector('[type=file]').value;
+    const userfile = document.querySelector('#file').value;
     // console.log(userfile);
-    if(userfile !== "") {
+    if(userfile === '') {
+      document.querySelector('#file').focus();
+      setFile(false);
+      return 0;
+    } else {
       userurl = userfile;
       document.querySelector('#urlchg').value = "";
     }
@@ -171,7 +176,7 @@ export default function Table2({ color }) {
                 </th>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 w-4/6">
                   <div className="hover:text-indigo-500">
-                    <a href={ userurl } download="" className={"w-full p-2 " + (url !== true ? "" : "hidden")} target="_blank" rel="noreferrer">
+                    <a href={ userurl } className={"w-full p-2 " + (url !== true ? "" : "hidden")} target="_blank" rel="noreferrer">
                       { userurl }
                     </a>
                   </div>
@@ -186,8 +191,7 @@ export default function Table2({ color }) {
                       href="#pablo"
                       onClick={(e) => {
                         e.preventDefault();
-                        
-                        url === true ? setChgUrl(true) : file === true ? sendUrl(true) : chgbtn === 0 ? setchgbtn(1) : console.log(userurl);
+                        url === true ? setChgUrl(true) : file === true ? sendUrl(true) : chgbtn === 0 ? setchgbtn(1) : setchgbtn(0);
                         console.log(chgbtn);
                       }}
                     >
