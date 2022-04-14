@@ -25,8 +25,8 @@ export default function HeaderStats({ gradeid, data }) {
             <div>
               <div className="flex flex-wrap md:py-3">
                 {data.map((v, i) => (
-                  <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                    <Stats key={i}
+                  <div className="w-full lg:w-6/12 xl:w-3/12 px-4" key={i}>
+                    <Stats
                       statClasstype={v.classtype}
                       statGrade={gradeid}
                       statClass={v.class}
