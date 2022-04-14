@@ -46,6 +46,7 @@ export default function Table2({ color }) {
   const sendUrl = () => {
     console.log(userurl);
     setFile(false);
+    alert("변경되었습니다.");
   };
   const [chgbtn, setchgbtn] = React.useState(0);
 
