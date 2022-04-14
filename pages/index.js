@@ -14,7 +14,7 @@ const data = {
       data: [
         {class: "1", classtype: "소프트1", stuno:"20"},
         {class: "2", classtype: "소프트2", stuno:"20"},
-        {class: "3", classtype: "사물인터넷3", stuno:"20"},
+        {class: "3", classtype: "인공지능3", stuno:"20"},
         {class: "4", classtype: "게임4", stuno:"20"},
       ]
     },
@@ -30,10 +30,7 @@ const data = {
     {
       grade: "3",
       data: [
-        {class: "1", classtype: "소프트1", stuno:"20"},
-        {class: "2", classtype: "소프트2", stuno:"20"},
-        {class: "3", classtype: "사물인터넷3", stuno:"20"},
-        {class: "4", classtype: "게임4", stuno:"20"},
+        {class: "1", classtype: "경영회계1", stuno:"20"},
       ]
     },
   ]
@@ -43,7 +40,6 @@ const userid = "1113";
 const username = "윤서준";
 
 const Index = () => {
-// export default function Index() {
   const router = useRouter();
   const { classid } = router.query;
   const { gradeid } = router.query;
@@ -74,6 +70,6 @@ const Index = () => {
         </div>
     </>
   );
-}
+};
 
 export default Index;
