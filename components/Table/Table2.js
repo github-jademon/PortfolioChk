@@ -1,7 +1,6 @@
 // import useSWR from 'swr'
 import React from "react";
 import PropTypes from "prop-types";
-import { createPopper } from "@popperjs/core";
 
 const userid = "1113";
 const username = "윤서준";
@@ -13,18 +12,25 @@ export default function Table2({ color }) {
   // if (!data) return <div>로딩 페이지 너가 만들어</div>
   // if (error) return <div>오류 페이지 너가 만들어</div>
 
-  const btnDropdownRef = React.createRef();
-
   const setChgUrl = () => {
+    const regex = /^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?/;
     userurl = document.querySelector('#urlchg').value;
-    console.log(userurl);
-    sendUrl();
-    setUrl(false);
+    // if(!regUrlType(userurl)){
+    if(!regex.test(userurl)){
+      console.log(userurl);
+      document.querySelector('#urlchg').focus();
+      return 0;
+    }
+    else{
+      // console.log(userurl);
+      sendUrl();
+      setUrl(false);
+    }
   };
 
   const setChgFile = () => {
     const userfile = document.querySelector('[type=file]').value;
-    console.log(userfile);
+    // console.log(userfile);
     if(userfile !== "") {
       userurl = userfile;
       document.querySelector('#urlchg').value = "";
@@ -35,7 +41,6 @@ export default function Table2({ color }) {
     console.log(userurl);
     setFile(false);
   };
-
   const [chgbtn, setchgbtn] = React.useState(0);
 
   const [showModal, setShowModal] = React.useState(false);
@@ -159,11 +164,11 @@ export default function Table2({ color }) {
                 </th>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 w-4/6">
                   <div className="hover:text-indigo-500">
-                    <a href={ userurl } className={"w-full p-2 " + (url !== true ? "" : "hidden")} target="_blank" rel="noreferrer">
+                    <a href={ userurl } download="" className={"w-full p-2 " + (url !== true ? "" : "hidden")} target="_blank" rel="noreferrer">
                       { userurl }
                     </a>
                   </div>
-                  <input id="urlchg" className={"text-left w-full focus:outline-none focus:border-indigo-500 border-b border-gray-400 h-full p-2 " + (url === true ? "" : "hidden")} defaultValue={ userurl } spellCheck={false} placeholder="주소를 입력해주세요" />
+                  <input id="urlchg" type="url" className={"text-left w-full focus:outline-none focus:border-indigo-500 border-b border-gray-400 h-full p-2 " + (url === true ? "" : "hidden")} defaultValue={ userurl } spellCheck={false} placeholder="주소를 입력해주세요" />
                 
                 </td>
                 <td className={"border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right "}>
@@ -172,7 +177,6 @@ export default function Table2({ color }) {
                     <a
                       className="text-blueGray-500 py-1 px-3"
                       href="#pablo"
-                      ref={btnDropdownRef}
                       onClick={(e) => {
                         e.preventDefault();
                         
