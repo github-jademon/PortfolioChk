@@ -37,6 +37,12 @@ export default function Table2({ color }) {
     }
   };
 
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      setChgUrl();
+    }
+  };
+
   const sendUrl = () => {
     console.log(userurl);
     setFile(false);
@@ -168,7 +174,7 @@ export default function Table2({ color }) {
                       { userurl }
                     </a>
                   </div>
-                  <input id="urlchg" type="url" className={"text-left w-full focus:outline-none focus:border-indigo-500 border-b border-gray-400 h-full p-2 " + (url === true ? "" : "hidden")} defaultValue={ userurl } spellCheck={false} placeholder="주소를 입력해주세요" />
+                  <input id="urlchg" type="url" className={"text-left w-full focus:outline-none focus:border-indigo-500 border-b border-gray-400 h-full p-2 " + (url === true ? "" : "hidden")} onKeyPress={(e) => {onKeyPress(e)}} defaultValue={ userurl } spellCheck={false} placeholder="주소를 입력해주세요" />
                 
                 </td>
                 <td className={"border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right "}>
