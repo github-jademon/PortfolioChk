@@ -39,6 +39,7 @@ const username = "윤서준";
 
 const Index = () => {
   const router = useRouter();
+  const [check, setCheck] = useState(false);
   const [classid, setClassid] = useState(router.query.classid);
   const [gradeid, setGradeid] = useState(router.query.gradeid);
 
@@ -58,6 +59,7 @@ const Index = () => {
       setClassid("1");
       setGradeid("1");
     }
+    setCheck(true);
   }, [router.query]);
 
   const gradechk1 = data.data[Object.keys(data.data)[0]].grade;
@@ -65,7 +67,7 @@ const Index = () => {
   const gradechk2 = data.data[Object.keys(data.data)[1]].grade;
   const datachk2 = data.data[Object.keys(data.data)[1]].data;
   const datachk3 = data.data[Object.keys(data.data)[2]].data;
-  return !router.isReady ? (
+  return !check ? (
     <div></div>
   ) : (
     <>
